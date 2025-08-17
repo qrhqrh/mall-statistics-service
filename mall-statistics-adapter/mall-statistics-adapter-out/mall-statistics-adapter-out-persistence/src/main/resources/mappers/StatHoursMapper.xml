@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.statistics.adapter.out.persistence.mapper.StatHoursMapper">
+
+    <resultMap id="BaseResultMap" type="com.mall.statistics.domain.entity.StatHours">
+        <id column="stat_id" property="statId" />
+        <result column="new_goods_common_num" property="newGoodsCommonNum" />
+        <result column="new_member_num" property="newMemberNum" />
+        <result column="new_store_num" property="newStoreNum" />
+        <result column="orders_amount" property="ordersAmount" />
+        <result column="orders_num" property="ordersNum" />
+        <result column="predeposit_balance_amount" property="predepositBalanceAmount" />
+        <result column="predeposit_cash_amount" property="predepositCashAmount" />
+        <result column="predeposit_consume_amount" property="predepositConsumeAmount" />
+        <result column="predeposit_recharge_amount" property="predepositRechargeAmount" />
+        <result column="predeposit_refund_amount" property="predepositRefundAmount" />
+        <result column="refund_amount" property="refundAmount" />
+        <result column="stat_date" property="statDate" />
+        <result column="stat_hour" property="statHour" />
+        <result column="created_at" property="createdAt" />
+        <result column="created_by" property="createdBy" />
+        <result column="updated_at" property="updatedAt" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="is_deleted" property="isDeleted" />
+    </resultMap>
+
+    <select id="selectByQuery" resultMap="BaseResultMap">
+        SELECT * FROM stat_hours
+        <where>
+            is_deleted = 0
+            <if test="query.startDate != null">
+                AND stat_date >= #{query.startDate}
+            </if>
+            <if test="query.endDate != null">
+                AND stat_date &lt;= #{query.endDate}
+            </if>
+            <if test="query.statHour != null">
+                AND stat_hour = #{query.statHour}
+            </if>
+        </where>
+        ORDER BY stat_date DESC, stat_hour DESC
+        <if test="query.pageNum != null and query.pageSize != null">
+            LIMIT #{query.pageSize} OFFSET #{query.pageNum - 1} * #{query.pageSize}
+        </if>
+    </select>
+
+</mapper>

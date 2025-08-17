@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.statistics.adapter.out.persistence.mapper.StatOrdersMapper">
+
+    <resultMap id="BaseResultMap" type="com.mall.statistics.domain.entity.StatOrders">
+        <id column="orders_id" property="ordersId" />
+        <result column="member_id" property="memberId" />
+        <result column="member_name" property="memberName" />
+        <result column="orders_amount" property="ordersAmount" />
+        <result column="orders_sn" property="ordersSn" />
+        <result column="orders_state" property="ordersState" />
+        <result column="orders_type" property="ordersType" />
+        <result column="store_id" property="storeId" />
+        <result column="store_name" property="storeName" />
+        <result column="create_time" property="createTime" />
+        <result column="payment_time" property="paymentTime" />
+        <result column="finish_time" property="finishTime" />
+        <result column="created_at" property="createdAt" />
+        <result column="created_by" property="createdBy" />
+        <result column="updated_at" property="updatedAt" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="is_deleted" property="isDeleted" />
+    </resultMap>
+
+    <select id="selectByQuery" resultMap="BaseResultMap">
+        SELECT * FROM stat_orders
+        <where>
+            is_deleted = 0
+            <if test="query.memberId != null">
+                AND member_id = #{query.memberId}
+            </if>
+            <if test="query.storeId != null">
+                AND store_id = #{query.storeId}
+            </if>
+            <if test="query.ordersState != null">
+                AND orders_state = #{query.ordersState}
+            </if>
+            <if test="query.startTime != null">
+                AND create_time >= #{query.startTime}
+            </if>
+            <if test="query.endTime != null">
+                AND create_time &lt;= #{query.endTime}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+        <if test="query.pageNum != null and query.pageSize != null">
+            LIMIT #{query.pageSize} OFFSET #{query.pageNum - 1} * #{query.pageSize}
+        </if>
+    </select>
+
+</mapper>

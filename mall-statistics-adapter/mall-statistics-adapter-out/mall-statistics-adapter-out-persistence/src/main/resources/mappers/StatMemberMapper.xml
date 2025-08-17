@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.statistics.adapter.out.persistence.mapper.StatMemberMapper">
+
+    <resultMap id="BaseResultMap" type="com.mall.statistics.domain.entity.StatMember">
+        <id column="stat_id" property="statId" />
+        <result column="member_id" property="memberId" />
+        <result column="member_name" property="memberName" />
+        <result column="orders_amount" property="ordersAmount" />
+        <result column="orders_num" property="ordersNum" />
+        <result column="points_increase" property="pointsIncrease" />
+        <result column="points_reduce" property="pointsReduce" />
+        <result column="predeposit_increase" property="predepositIncrease" />
+        <result column="predeposit_reduce" property="predepositReduce" />
+        <result column="stat_date" property="statDate" />
+        <result column="created_at" property="createdAt" />
+        <result column="created_by" property="createdBy" />
+        <result column="updated_at" property="updatedAt" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="is_deleted" property="isDeleted" />
+    </resultMap>
+
+    <select id="selectByQuery" resultMap="BaseResultMap">
+        SELECT * FROM stat_member
+        <where>
+            is_deleted = 0
+            <if test="query.memberId != null">
+                AND member_id = #{query.memberId}
+            </if>
+            <if test="query.memberName != null and query.memberName != ''">
+                AND member_name LIKE CONCAT('%', #{query.memberName}, '%')
+            </if>
+            <if test="query.startDate != null">
+                AND stat_date >= #{query.startDate}
+            </if>
+            <if test="query.endDate != null">
+                AND stat_date &lt;= #{query.endDate}
+            </if>
+        </where>
+        ORDER BY stat_date DESC
+        <if test="query.pageNum != null and query.pageSize != null">
+            LIMIT #{query.pageSize} OFFSET #{query.pageNum - 1} * #{query.pageSize}
+        </if>
+    </select>
+
+</mapper>
