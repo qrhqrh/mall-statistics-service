@@ -7,8 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * 小时统计数据的查询实现
+ * 负责小时统计数据的查询操作
+ */
 @Service
 public class StatHoursQueryService implements StatHoursQueryUseCase {
+
     @Override
     public List<StatHoursDto> queryStatHours(StatHoursQuery query) {
         return List.of();
