@@ -8,12 +8,18 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * 订单统计数据的查询实现
- * 负责订单统计数据的查询操作
+ * @author qiu
+ * @date 2025/8/18
+ * @description 订单统计数据的查询实现
  */
 @Service
 public class StatOrdersQueryService implements StatOrdersQueryUseCase {
 
+    /**
+     * 查询订单统计数据
+     * @param query 查询条件
+     * @return
+     */
     @Override
     public List<StatOrdersDto> queryStatOrders(StatOrdersQuery query) {
         return List.of();

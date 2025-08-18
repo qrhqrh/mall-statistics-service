@@ -8,12 +8,18 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * 会员统计数据的查询实现
- * 负责会员统计数据的查询操作
+ * @author qiu
+ * @date 2025/8/18
+ * @description 会员统计数据的查询实现
  */
 @Service
 public class StatMemberQueryService implements StatMemberQueryUseCase {
 
+    /**
+     * 查询会员统计数据
+     * @param query 查询条件
+     * @return
+     */
     @Override
     public List<StatMemberDto> queryStatMember(StatMemberQuery query) {
         return List.of();
