@@ -3,7 +3,9 @@ package com.mall.statistics.adapter.in.web;
 import com.mall.statistics.application.dto.StatHoursDto;
 import com.mall.statistics.application.dto.StatMemberDto;
 import com.mall.statistics.application.dto.StatOrdersDto;
-import com.mall.statistics.application.port.in.StatisticsQueryUseCase;
+import com.mall.statistics.application.port.in.StatHoursQueryUseCase;
+import com.mall.statistics.application.port.in.StatMemberQueryUseCase;
+import com.mall.statistics.application.port.in.StatOrdersQueryUseCase;
 import com.mall.statistics.application.query.StatHoursQuery;
 import com.mall.statistics.application.query.StatMemberQuery;
 import com.mall.statistics.application.query.StatOrdersQuery;
@@ -27,7 +29,9 @@ import java.util.List;
 @Tag(name = "统计数据管理", description = "统计数据查询接口")
 public class StatisticsController {
     
-    private final StatisticsQueryUseCase statisticsQueryUseCase;
+    private final StatHoursQueryUseCase statHoursQueryUseCase;
+    private final StatMemberQueryUseCase statMemberQueryUseCase;
+    private final StatOrdersQueryUseCase statOrdersQueryUseCase;
     
     /**
      * 查询小时统计数据
@@ -50,7 +54,7 @@ public class StatisticsController {
         query.setPageNum(pageNum);
         query.setPageSize(pageSize);
         
-        List<StatHoursDto> result = statisticsQueryUseCase.queryStatHours(query);
+        List<StatHoursDto> result = statHoursQueryUseCase.queryStatHours(query);
         return Result.success(result);
     }
     
@@ -79,7 +83,7 @@ public class StatisticsController {
         query.setPageNum(pageNum);
         query.setPageSize(pageSize);
         
-        List<StatOrdersDto> result = statisticsQueryUseCase.queryStatOrders(query);
+        List<StatOrdersDto> result = statOrdersQueryUseCase.queryStatOrders(query);
         return Result.success(result);
     }
     
@@ -106,7 +110,7 @@ public class StatisticsController {
         query.setPageNum(pageNum);
         query.setPageSize(pageSize);
         
-        List<StatMemberDto> result = statisticsQueryUseCase.queryStatMember(query);
+        List<StatMemberDto> result = statMemberQueryUseCase.queryStatMember(query);
         return Result.success(result);
     }
 }
