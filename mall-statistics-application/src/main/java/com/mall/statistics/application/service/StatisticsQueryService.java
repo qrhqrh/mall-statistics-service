@@ -3,52 +3,45 @@ package com.mall.statistics.application.service;
 import com.mall.statistics.application.dto.StatHoursDto;
 import com.mall.statistics.application.dto.StatMemberDto;
 import com.mall.statistics.application.dto.StatOrdersDto;
-import com.mall.statistics.application.port.in.StatisticsQueryUseCase;
 import com.mall.statistics.application.port.out.StatisticsRepository;
-import com.mall.statistics.application.query.StatHoursQuery;
-import com.mall.statistics.application.query.StatMemberQuery;
-import com.mall.statistics.application.query.StatOrdersQuery;
 import com.mall.statistics.domain.entity.StatHours;
 import com.mall.statistics.domain.entity.StatMember;
 import com.mall.statistics.domain.entity.StatOrders;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * 统计查询服务实现
  */
 @Service
 @RequiredArgsConstructor
-public class StatisticsQueryService implements StatisticsQueryUseCase {
+public class StatisticsQueryService {
     
     private final StatisticsRepository statisticsRepository;
     
-    @Override
-    public List<StatHoursDto> queryStatHours(StatHoursQuery query) {
-        List<StatHours> statHours = statisticsRepository.findStatHours(query);
-        return statHours.stream()
-                .map(this::convertToStatHoursDto)
-                .collect(Collectors.toList());
-    }
-    
-    @Override
-    public List<StatOrdersDto> queryStatOrders(StatOrdersQuery query) {
-        List<StatOrders> statOrders = statisticsRepository.findStatOrders(query);
-        return statOrders.stream()
-                .map(this::convertToStatOrdersDto)
-                .collect(Collectors.toList());
-    }
-    
-    @Override
-    public List<StatMemberDto> queryStatMember(StatMemberQuery query) {
-        List<StatMember> statMembers = statisticsRepository.findStatMember(query);
-        return statMembers.stream()
-                .map(this::convertToStatMemberDto)
-                .collect(Collectors.toList());
-    }
+//    @Override
+//    public List<StatHoursDto> queryStatHours(StatHoursQuery query) {
+//        List<StatHours> statHours = statisticsRepository.findStatHours(query);
+//        return statHours.stream()
+//                .map(this::convertToStatHoursDto)
+//                .collect(Collectors.toList());
+//    }
+//
+//    @Override
+//    public List<StatOrdersDto> queryStatOrders(StatOrdersQuery query) {
+//        List<StatOrders> statOrders = statisticsRepository.findStatOrders(query);
+//        return statOrders.stream()
+//                .map(this::convertToStatOrdersDto)
+//                .collect(Collectors.toList());
+//    }
+//
+//    @Override
+//    public List<StatMemberDto> queryStatMember(StatMemberQuery query) {
+//        List<StatMember> statMembers = statisticsRepository.findStatMember(query);
+//        return statMembers.stream()
+//                .map(this::convertToStatMemberDto)
+//                .collect(Collectors.toList());
+//    }
     
     /**
      * 转换StatHours实体为DTO
