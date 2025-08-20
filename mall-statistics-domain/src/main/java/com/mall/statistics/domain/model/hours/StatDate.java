@@ -1,5 +1,7 @@
 package com.mall.statistics.domain.model.hours;
 
+import com.mall.statistics.common.exception.BusinessException;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -13,7 +15,7 @@ public record StatDate(LocalDate value) {
     public StatDate {
         Objects.requireNonNull(value, "日期不能为空");
         if(value.isAfter(LocalDate.now())) {
-            throw new IllegalArgumentException("日期不能大于当前日期");
+            throw new BusinessException("日期不能大于当前日期");
         }
     }
 

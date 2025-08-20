@@ -1,5 +1,7 @@
 package com.mall.statistics.domain.model.hours;
 
+import com.mall.statistics.common.exception.BusinessException;
+
 import java.math.BigDecimal;
 
 /**
@@ -11,7 +13,7 @@ public record Amount (BigDecimal value){
 
     public Amount{
         if(value.compareTo(BigDecimal.ZERO) < 0){
-            throw new IllegalArgumentException("金额不能为负数");
+            throw new BusinessException("金额不能为负数");
         }
     }
 

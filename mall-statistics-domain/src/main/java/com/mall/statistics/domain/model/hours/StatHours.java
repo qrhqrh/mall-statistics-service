@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 public class StatHours {
 
-    private final StatId statId;
+    private final Long statId;
     private final Long newGoodsCommonNum;
     private final Long newStoreNum;
     private final Amount ordersAmount;
@@ -32,7 +32,7 @@ public class StatHours {
     private final Long updatedBy;
     private final boolean isDeleted;
 
-    public StatHours(StatId statId, Long newGoodsCommonNum, Long newStoreNum, Amount ordersAmount, Long ordersNum, Amount predepositBalanceAmount, Amount predepositCashAmount, BigDecimal predepositConsumeNum, Amount predepositRechargeAmount, BigDecimal predepositRefundNum, Amount refundAmount, StatDate statDate, Hour statHour, LocalDateTime createdAt, Long createdBy, LocalDateTime updatedAt, Long updatedBy, boolean isDeleted){
+    public StatHours(Long statId, Long newGoodsCommonNum, Long newStoreNum, Amount ordersAmount, Long ordersNum, Amount predepositBalanceAmount, Amount predepositCashAmount, BigDecimal predepositConsumeNum, Amount predepositRechargeAmount, BigDecimal predepositRefundNum, Amount refundAmount, StatDate statDate, Hour statHour, LocalDateTime createdAt, Long createdBy, LocalDateTime updatedAt, Long updatedBy, boolean isDeleted){
 
         this.statId = statId;
         this.newGoodsCommonNum = newGoodsCommonNum;
